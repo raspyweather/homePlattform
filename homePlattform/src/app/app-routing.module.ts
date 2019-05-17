@@ -5,6 +5,10 @@ import { ScanReceiptComponent } from './scan-receipt/scan-receipt.component';
 const routes: Routes = [{
   component: ScanReceiptComponent,
   path: "scanner"
+},
+{
+  component: InventoryListComponent,
+  path: "inventory"
 }];
 
 @NgModule({
