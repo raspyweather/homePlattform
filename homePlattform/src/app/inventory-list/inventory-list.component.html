@@ -1,0 +1,14 @@
+<p>
+  inventory-list works!
+</p>
+
+<!--button (click) = "addReceiptItems()">Fill List</button>-->
+
+<ul class="list-group">
+    <div class="card" *ngFor="let inventoryElement of inventoryElements">
+        <div class="card-body">
+          <h5 class="card-title">{{inventoryElement.name}}</h5>
+          <p class="card-text">Mindestens haltbar bis: {{inventoryElement.bestBefore}}</p>
+        </div>
+      </div>
+</ul>

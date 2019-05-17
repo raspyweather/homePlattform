@@ -4,10 +4,12 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { InventoryListComponent } from './inventory-list/inventory-list.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    InventoryListComponent
   ],
   imports: [
     BrowserModule,
