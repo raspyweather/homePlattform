@@ -25,8 +25,16 @@
 <ul class="list-group">
     <div class="card" *ngFor="let inventoryElement of inventoryElements">
         <div class="card-body">
-          <h5 class="card-title">{{inventoryElement.name}}</h5>
-          <p class="card-text">Mindestens haltbar bis: {{inventoryElement.bestBefore}}</p>
+          <div class="row">
+            <div class="col">
+                <h5 class="card-title">{{inventoryElement.name}}</h5>
+                <p class="card-text">Mindestens haltbar bis: {{inventoryElement.bestBefore}}</p>
+            </div>
+            <div class="col">
+              <p class="card-body">Preis: {{inventoryElement.price}}€</p>
+            </div>
+          </div>
+          
         </div>
       </div>
 </ul>
