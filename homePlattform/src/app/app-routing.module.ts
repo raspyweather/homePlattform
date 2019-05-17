@@ -4,13 +4,12 @@ import { InventoryListComponent } from './inventory-list/inventory-list.componen
 import { ScanReceiptComponent } from './scan-receipt/scan-receipt.component';
 
 const routes: Routes = [{
-  component: InventoryListComponent,
-  path: "inventory"
-},
-
-{
   component: ScanReceiptComponent,
-  path: "scanner"
+  path: 'scanner'
+},
+{
+  component: InventoryListComponent,
+  path: 'inventory'
 }];
 
 @NgModule({
