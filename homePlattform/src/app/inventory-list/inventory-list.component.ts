@@ -10,18 +10,18 @@ import { inventoryItem } from './inventoryItem.interface';
 export class InventoryListComponent implements OnInit {
 
   public inventoryElements: inventoryItem[] = [];
-  public formProductName = "";
+  public formProductName = '';
   public formProductPrice = 0.00;
-  public formProductBestBefore = "01-01-1970";
+  public formProductBestBefore = '01-01-1970';
 
   constructor() { }
 
   ngOnInit() {
-    let inventoryListJsonString = "";
-    if (localStorage.getItem("inventoryList") != null) {
-      inventoryListJsonString = localStorage.getItem("inventoryList");
-      let inventoryListObject = JSON.parse(inventoryListJsonString);
-      this.inventoryElements.push(...inventoryListObject["inventory"]);
+    let inventoryListJsonString = '';
+    if (localStorage.getItem('inventoryList') != null) {
+      inventoryListJsonString = localStorage.getItem('inventoryList');
+      const inventoryListObject = JSON.parse(inventoryListJsonString);
+      this.inventoryElements.push(...inventoryListObject['inventory']);
     }
 
   }
@@ -36,36 +36,36 @@ export class InventoryListComponent implements OnInit {
   }
 
   addReceiptItemManually() {
-    let inventoryItem: inventoryItem = { name: this.formProductName, price: this.formProductPrice, bestBefore: this.formProductBestBefore }
-    this.inventoryElements.push(inventoryItem)
+    const inventoryItem: inventoryItem = { name: this.formProductName, price: this.formProductPrice, bestBefore: this.formProductBestBefore };
+    this.inventoryElements.push(inventoryItem);
     this.appendInventoryItemToLocalStorage(inventoryItem);
     this.resetFormFields();
   }
 
   appendInventoryItemToLocalStorage(inventoryItem: inventoryItem) {
-    let inventoryListJsonString = "";
-    let inventoryListObject = {};
+    let inventoryListJsonString = '';
+    let inventoryListObject = { inventory: [] };
 
-    if (localStorage.getItem("inventoryList") != null) {
-      inventoryListJsonString = localStorage.getItem("inventoryList");
+    if (localStorage.getItem('inventoryList') != null) {
+      inventoryListJsonString = localStorage.getItem('inventoryList');
       inventoryListObject = JSON.parse(inventoryListJsonString);
     } else {
-      inventoryListObject = {'inventory': []}
+      inventoryListObject = { inventory: [] };
     }
 
-    inventoryListObject['inventory'].push(inventoryItem);
+    inventoryListObject.inventory.push(inventoryItem);
     inventoryListJsonString = JSON.stringify(inventoryListObject);
 
-    localStorage.setItem("inventoryList", inventoryListJsonString);
+    localStorage.setItem('inventoryList', inventoryListJsonString);
   }
 
   resetFormFields() {
-    this.formProductName = "";
+    this.formProductName = '';
     this.formProductPrice = 0.00;
-    this.formProductBestBefore = "";
+    this.formProductBestBefore = '';
   }
 
   clickTestButton() {
-    alert("It works");
+    alert('It works');
   }
 }
