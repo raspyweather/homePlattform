@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { resetCompiledComponents } from '@angular/core/src/render3/jit/module';
+import { inventoryItem } from './inventoryItem.interface';
 
 @Component({
   selector: 'app-inventory-list',
@@ -7,9 +9,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class InventoryListComponent implements OnInit {
 
-  public inventoryElements = []
+  public inventoryElements: inventoryItem[] = [];
+  public formProductName = "";
+  public formProductPrice = 0.00;
+  public formProductBestBefore = "01-01-1970";
 
   constructor() { }
+
+  ngOnInit() {
+    let inventoryListJsonString = "";
+    if (localStorage.getItem("inventoryList") != null) {
+      inventoryListJsonString = localStorage.getItem("inventoryList");
+      let inventoryListObject = JSON.parse(inventoryListJsonString);
+      this.inventoryElements.push(...inventoryListObject["inventory"]);
+    }
+
+  }
 
   public addReceiptItems() {
     this.inventoryElements.push(...[{ name: 'Müllermilch', price: 0.59, bestBefore: '06-06-19' },
@@ -20,11 +35,37 @@ export class InventoryListComponent implements OnInit {
     { name: 'Pfanner pure tea', price: 0.99, bestBefore: '11-04-20' }]);
   }
 
+  addReceiptItemManually() {
+    let inventoryItem: inventoryItem = { name: this.formProductName, price: this.formProductPrice, bestBefore: this.formProductBestBefore }
+    this.inventoryElements.push(inventoryItem)
+    this.appendInventoryItemToLocalStorage(inventoryItem);
+    this.resetFormFields();
+  }
+
+  appendInventoryItemToLocalStorage(inventoryItem: inventoryItem) {
+    let inventoryListJsonString = "";
+    let inventoryListObject = {};
+
+    if (localStorage.getItem("inventoryList") != null) {
+      inventoryListJsonString = localStorage.getItem("inventoryList");
+      inventoryListObject = JSON.parse(inventoryListJsonString);
+    } else {
+      inventoryListObject = {'inventory': []}
+    }
+
+    inventoryListObject['inventory'].push(inventoryItem);
+    inventoryListJsonString = JSON.stringify(inventoryListObject);
+
+    localStorage.setItem("inventoryList", inventoryListJsonString);
+  }
+
+  resetFormFields() {
+    this.formProductName = "";
+    this.formProductPrice = 0.00;
+    this.formProductBestBefore = "";
+  }
+
   clickTestButton() {
     alert("It works");
   }
-
-  ngOnInit() {
-  }
-
 }
