@@ -9,7 +9,8 @@ import { InventoryListComponent } from '../inventory-list/inventory-list.compone
 })
 export class ScanReceiptComponent implements OnInit, OnDestroy {
 
-  video;
+  private video: HTMLVideoElement;
+  private stream: MediaStream;
 
   constructor(private readonly router: Router) {
 
@@ -26,6 +27,7 @@ export class ScanReceiptComponent implements OnInit, OnDestroy {
       navigator.mediaDevices.getUserMedia({ video: true }).then((stream) => {
         // video.src = window.URL.createObjectURL(stream);
         this.video.srcObject = stream;
+        this.stream = stream;
         this.video.play();
       });
     }
@@ -35,13 +37,17 @@ export class ScanReceiptComponent implements OnInit, OnDestroy {
       canvas.getContext('2d').drawImage(this.video, 0, 0, canvas.width, canvas.height);
       cameraPreview.style.backgroundImage = 'url(\'' + canvas.toDataURL('image/jpeg') + '\')';
       document.getElementById('loading_overlay').classList.add('active');
-      window.setTimeout(() => {
+      setTimeout(() => {
+        console.log('pause');
+        this.stream.getVideoTracks().forEach(track => track.stop());
+        this.video.pause();
         this.router.navigateByUrl('/inventory/:fromScan');
       }, 500);
     });
   }
 
   ngOnDestroy() {
+    this.stream.getVideoTracks().forEach(track => track.stop());
     this.video.pause();
   }
 
