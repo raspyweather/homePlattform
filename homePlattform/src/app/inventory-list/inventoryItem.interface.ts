@@ -3,4 +3,5 @@ export interface InventoryItem {
     price: number;
     bestBefore: string;
     addedAt: string;
+    imageUrl?: string;
 }

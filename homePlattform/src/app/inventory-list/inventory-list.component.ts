@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { InventoryItem } from './inventoryItem.interface';
 import { ActivatedRoute } from '@angular/router';
 import * as moment from 'moment';
+import { InventoryService } from '../inventory.service';
 
 @Component({
   selector: 'app-inventory-list',
@@ -16,11 +17,12 @@ export class InventoryListComponent implements OnInit {
   public showForm = false;
   public formProductBestBefore = moment().locale('de').locale('de').format('DD-MM-YYYY');
 
-  constructor(private readonly route: ActivatedRoute) { }
+  constructor(private readonly route: ActivatedRoute,
+    private readonly inventoryService: InventoryService) { }
 
   ngOnInit() {
     const inventoryListJsonString = '';
-    const items = this.getInventoryElements();
+    const items = this.inventoryService.getInventoryElements();
     if (items.length === 0) {
       this.insertInventoryItem(
         {
@@ -37,14 +39,6 @@ export class InventoryListComponent implements OnInit {
       }
     });
 
-  }
-
-  public getInventoryElements(): InventoryItem[] {
-    const str = localStorage.getItem('inventory') || '[]';
-    return JSON.parse(str);
-  }
-  public setInventoryElements(items: InventoryItem[]) {
-    localStorage.setItem('inventory', JSON.stringify(items));
   }
 
   public addReceiptItems() {
@@ -70,12 +64,12 @@ export class InventoryListComponent implements OnInit {
   }
 
   removeInventoryItem(inventoryItem: number) {
-    const elements = this.getInventoryElements();
-    this.setInventoryElements(elements.filter((x, i) => i !== inventoryItem));
+    const elements = this.inventoryService.getInventoryElements();
+    this.inventoryService.setInventoryElements(elements.filter((x, i) => i !== inventoryItem));
   }
 
   insertInventoryItem(inventoryItem: InventoryItem) {
-    this.setInventoryElements([...this.getInventoryElements(), inventoryItem]);
+    this.inventoryService.setInventoryElements([...this.inventoryService.getInventoryElements(), inventoryItem]);
   }
 
   resetFormFields() {
