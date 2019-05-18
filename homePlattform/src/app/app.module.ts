@@ -12,6 +12,8 @@ import { UpdateListComponent } from './update-list/update-list.component';
 import { DevicesComponent } from './devices/devices.component';
 import { InventoryService } from './inventory.service';
 import { TimelineComponent } from './timeline/timeline.component';
+import { DeviceService } from './device.service';
+import { EventService } from './event.service';
 
 @NgModule({
   declarations: [
@@ -29,7 +31,7 @@ import { TimelineComponent } from './timeline/timeline.component';
     AppRoutingModule,
     NgbModule
   ],
-  providers: [InventoryService],
+  providers: [InventoryService, DeviceService, EventService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
