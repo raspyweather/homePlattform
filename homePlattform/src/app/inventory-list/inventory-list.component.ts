@@ -31,7 +31,6 @@ export class InventoryListComponent implements OnInit {
         this.addReceiptItems();
       }
     });
-    // document.getElementById("inventoryList").classList.add("useAnimations");
   }
 
   public addReceiptItems() {
@@ -45,8 +44,7 @@ export class InventoryListComponent implements OnInit {
   }
 
   addReceiptItemManually() {
-    const inventoryItem: inventoryItem =
-    {
+    const inventoryItem: inventoryItem = {
       name: this.formProductName,
       price: this.formProductPrice,
       bestBefore: this.formProductBestBefore,
@@ -55,12 +53,6 @@ export class InventoryListComponent implements OnInit {
     this.inventoryElements.unshift(inventoryItem);
     this.appendInventoryItemToLocalStorage(inventoryItem);
     this.resetFormFields();
-  }
-
-  removeInventoryItem(idx: number) {
-    const inventoryItemToBeRemoved = this.inventoryElements.filter((x, i) => i === idx);
-    this.removeInventoryItemFromLocalStorage(inventoryItemToBeRemoved[0]);
-    this.inventoryElements = this.inventoryElements.filter((x, i) => i !== idx);
   }
 
   removeInventoryItemFromLocalStorage(inventoryItem: inventoryItem) {
