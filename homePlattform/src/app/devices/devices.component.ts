@@ -8,12 +8,15 @@ import { smartDevice, SmartDeviceType } from './smartDevice.interface';
 })
 export class DevicesComponent implements OnInit {
 
-  public registeredDevices:smartDevice [] = [];
+  public registeredDevices: smartDevice[] = [];
 
   constructor() { }
 
   ngOnInit() {
-    this.registeredDevices.push({name: "Mixer", currentEnergyConsumption: 0.2, type: SmartDeviceType.SmartPlug});
+    this.registeredDevices.push(...[
+      { name: "Mixer", associatedDevice: "Mixer", currentEnergyConsumption: 0.2, type: SmartDeviceType.SmartPlug },
+      { name: "60\" Plasma TV", associatedDevice: "Plasma TV", currentEnergyConsumption: 450.3, type: SmartDeviceType.SmartPlug }
+    ]);
   }
 
 }
