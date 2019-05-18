@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { InventoryListComponent } from '../inventory-list/inventory-list.component';
 
 @Component({
   selector: 'app-scan-receipt',
@@ -9,7 +11,9 @@ export class ScanReceiptComponent implements OnInit {
 
   video;
 
-  constructor() { }
+  constructor(private readonly router:Router) {
+  
+  }
 
   ngOnInit() {
     // Grab elements, create settings, etc.
@@ -31,6 +35,9 @@ export class ScanReceiptComponent implements OnInit {
       canvas.getContext('2d').drawImage(this.video, 0, 0, canvas.width, canvas.height);
       camera_preview.style.backgroundImage = 'url(\'' + canvas.toDataURL('image/jpeg') + '\')';
       document.getElementById('loading_overlay').classList.add('active')
+      window.setTimeout(()=>{
+        this.router.navigateByUrl("/inventory/:fromScan")
+      },1000)
     });
   }
 
