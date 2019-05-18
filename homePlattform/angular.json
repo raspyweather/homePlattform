@@ -28,7 +28,10 @@
             ],
             "styles": [
               "src/styles.scss",
-              "./node_modules/@fortawesome/fontawesome-free/css/fontawesome.min.css",
+              "./node_modules/@fortawesome/fontawesome-free/css/fontawesome.css",
+              "./node_modules/@fortawesome/fontawesome-free/css/brands.css",
+              "./node_modules/@fortawesome/fontawesome-free/css/solid.css",
+              "./node_modules/@fortawesome/fontawesome-free/css/regular.css",
               "./node_modules/bootstrap/dist/css/bootstrap.min.css"
             ],
             "scripts": [],
