@@ -7,13 +7,15 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NavbarComponent } from './navbar/navbar.component';
 import { InventoryListComponent } from './inventory-list/inventory-list.component';
 import { ScanReceiptComponent } from './scan-receipt/scan-receipt.component';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
     NavbarComponent,
     AppComponent,
     ScanReceiptComponent,
-    InventoryListComponent
+    InventoryListComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
