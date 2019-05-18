@@ -19,14 +19,15 @@ export class InventoryListComponent implements OnInit {
   public formProductBestBefore = moment().locale('de').locale('de').format('DD-MM-YYYY');
 
   constructor(private readonly route: ActivatedRoute,
-    private readonly inventoryService: InventoryService) { }
+    private readonly inventoryService: InventoryService) {
+  
+           }
 
   ngOnInit() {
     const inventoryListJsonString = '';
     this.items = this.inventoryService.getInventoryElements();
     if (this.items.length === 0) {
       [
-
         { name: 'Apple Loopies', price: 1.99, bestBefore: '19-07-20', addedAt: '1. Mai 2019 um 08:00 Uhr' },
         { name: 'Bio-Bananen, 5 Stück', price: 1.99, bestBefore: '30-09-20', addedAt: '6. Mai 2019 um 08:00 Uhr', userCheckRecommended:true, 
         imageUrl:'https://www.kochschule.de/sites/default/files/images/kochwissen/440/banane.jpg' },
@@ -48,12 +49,12 @@ export class InventoryListComponent implements OnInit {
 
   public addReceiptItems() {
     [
-      { name: 'Müllermilch', price: 0.59, bestBefore: '06-06-19', addedAt: moment().locale('de').format('Do MMMM YYYY [um] hh:mm [Uhr]') },
-      { name: 'Tortilla Chips', price: 0.89, bestBefore: '10-01-20', addedAt: moment().locale('de').format('Do MMMM YYYY [um] hh:mm [Uhr]') },
-      { name: 'Salzstangen JA!', price: 0.39, bestBefore: '10-08-19', addedAt: moment().locale('de').format('Do MMMM YYYY [um] hh:mm [Uhr]') },
-      { name: 'Pepper Cola', price: 1.19, bestBefore: '02-12-19', addedAt: moment().locale('de').format('Do MMMM YYYY [um] hh:mm [Uhr]') },
+      { name: 'Pfanner pure tea', price: 0.99, bestBefore: '11-04-20', addedAt: moment().locale('de').format('Do MMMM YYYY [um] hh:mm [Uhr]') },
       { name: 'Vio Limo Zitrone', price: 1.49, bestBefore: '30-09-19', addedAt: moment().locale('de').format('Do MMMM YYYY [um] hh:mm [Uhr]') },
-      { name: 'Pfanner pure tea', price: 0.99, bestBefore: '11-04-20', addedAt: moment().locale('de').format('Do MMMM YYYY [um] hh:mm [Uhr]') }
+      { name: 'Pepper Cola', price: 1.19, bestBefore: '02-12-19', addedAt: moment().locale('de').format('Do MMMM YYYY [um] hh:mm [Uhr]') },
+      { name: 'Salzstangen JA!', price: 0.39, bestBefore: '10-08-19', addedAt: moment().locale('de').format('Do MMMM YYYY [um] hh:mm [Uhr]') },
+      { name: 'Tortilla Chips', price: 0.89, bestBefore: '10-01-20', addedAt: moment().locale('de').format('Do MMMM YYYY [um] hh:mm [Uhr]') },
+      { name: 'Müllermilch', price: 0.59, bestBefore: '06-06-19', addedAt: moment().locale('de').format('Do MMMM YYYY [um] hh:mm [Uhr]') }
     ].forEach(item => this.insertInventoryItem(item));
   }
 
