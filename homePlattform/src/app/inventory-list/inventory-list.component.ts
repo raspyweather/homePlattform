@@ -20,15 +20,19 @@ export class InventoryListComponent implements OnInit {
 
   ngOnInit() {
     const inventoryListJsonString = '';
-    const items = this.getInventoryElements();
-    if (items.length === 0) {
-      this.insertInventoryItem(
-        {
-          name: 'Apple Loopies',
-          price: 1.99,
-          bestBefore: '30-07-2020',
-          addedAt: '18. Mai 2019 um 08:00 Uhr'
-        });
+    this.items = this.inventoryService.getInventoryElements();
+    if (this.items.length === 0) {
+      [
+
+        { name: 'Apple Loopies', price: 1.99, bestBefore: '19-07-20', addedAt: '1. Mai 2019 um 08:00 Uhr' },
+        { name: 'Bio-Bananen, 5 Stück', price: 1.99, bestBefore: '30-09-20', addedAt: '6. Mai 2019 um 08:00 Uhr', userCheckRecommended:true, 
+        imageUrl:'https://www.kochschule.de/sites/default/files/images/kochwissen/440/banane.jpg' },
+        { name: 'RAUCH Happy Day 100% Apfel Apfelsaft 2L', price: 1.99, 
+        bestBefore: '14-07-20', addedAt: '12. Mai 2019 um 08:00 Uhr', 
+        userCheckRecommended:true, imageUrl:'https://files.billa.at/files/artikel/00-400975_01__600x600.jpg' },
+        { name: 'Württemberg Trollinger mit Lemberger QbA halbtrocken, Rotwein 2017', price: 1.99, bestBefore: '30-07-20', addedAt: '12. Mai 2019 um 08:00 Uhr', userCheckRecommended:true, imageUrl:'https://www.lidl.de/media/product/0/2/4/8/3/1/5/wuerttemberg-trollinger-mit-lemberger-qba-halbtrocken-rotwein-2017--1.jpg' }
+      ].forEach(item => this.insertInventoryItem(item));
+      console.log(this.items);
     }
     this.route.params.subscribe((param) => {
       if (param['fromScan'] !== undefined) {
