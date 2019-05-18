@@ -10,6 +10,7 @@ import { ScanReceiptComponent } from './scan-receipt/scan-receipt.component';
 import { HomeComponent } from './home/home.component';
 import { UpdateListComponent } from './update-list/update-list.component';
 import { DevicesComponent } from './devices/devices.component';
+import { InventoryService } from './inventory.service';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,7 @@ import { DevicesComponent } from './devices/devices.component';
     AppRoutingModule,
     NgbModule
   ],
-  providers: [],
+  providers: [InventoryService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
