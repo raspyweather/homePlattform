@@ -10,6 +10,10 @@ const routes: Routes = [{
 {
   component: InventoryListComponent,
   path: 'inventory'
+},
+{
+  component: InventoryListComponent,
+  path: 'inventory/:fromScan'
 }];
 
 @NgModule({

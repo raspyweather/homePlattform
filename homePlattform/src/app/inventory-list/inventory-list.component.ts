@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { resetCompiledComponents } from '@angular/core/src/render3/jit/module';
 import { inventoryItem } from './inventoryItem.interface';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-inventory-list',
@@ -14,7 +15,7 @@ export class InventoryListComponent implements OnInit {
   public formProductPrice = 0.00;
   public formProductBestBefore = '01-01-1970';
 
-  constructor() { }
+  constructor(private readonly route:ActivatedRoute) { }
 
   ngOnInit() {
     let inventoryListJsonString = '';
@@ -23,7 +24,11 @@ export class InventoryListComponent implements OnInit {
       const inventoryListObject = JSON.parse(inventoryListJsonString);
       this.inventoryElements.push(...inventoryListObject['inventory']);
     }
-
+    this.route.params.subscribe((param)=>{
+      if ('fromScan' in param) {
+        this.addReceiptItems()
+      }
+    })
   }
 
   public addReceiptItems() {
