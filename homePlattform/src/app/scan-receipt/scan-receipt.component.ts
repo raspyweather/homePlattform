@@ -24,7 +24,7 @@ export class ScanReceiptComponent implements OnInit, OnDestroy {
 
     // Put video listeners into place
     if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
-      navigator.mediaDevices.getUserMedia({ video: true }).then((stream) => {
+      navigator.mediaDevices.getUserMedia({ video: { facingMode: "environment" } }).then((stream) => {
         // video.src = window.URL.createObjectURL(stream);
         this.video.srcObject = stream;
         this.stream = stream;
