@@ -21,9 +21,9 @@
 
     <button type="button" class="btn btn-primary" (click) = "addReceiptItemManually()">Produkt zum Inventar hinzufügen</button>
   </form>
-
+<p></p>
 <ul class="list-group">
-    <div class="card" *ngFor="let inventoryElement of inventoryElements">
+    <div class="card" *ngFor="let inventoryElement of inventoryElements; let idx = index">
         <div class="card-body">
           <div class="row">
             <div class="col">
@@ -31,7 +31,11 @@
                 <p class="card-text">Mindestens haltbar bis: {{inventoryElement.bestBefore}}</p>
             </div>
             <div class="col">
-              <p class="card-body">Preis: {{inventoryElement.price}}€</p>
+              <p class="card-text">Preis: {{inventoryElement.price}}€</p>
+              <p class="card-text">Hinzugefügt am {{inventoryElement.addedAt}}</p>
+            </div>
+            <div class="col">
+              <button type="button" class="btn btn-primary" (click) = "removeInventoryItem(idx)">Eintrag entfernen</button>
             </div>
           </div>
           
