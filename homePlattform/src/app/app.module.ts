@@ -8,6 +8,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { InventoryListComponent } from './inventory-list/inventory-list.component';
 import { ScanReceiptComponent } from './scan-receipt/scan-receipt.component';
 import { HomeComponent } from './home/home.component';
+import { DevicesComponent } from './devices/devices.component';
 
 
 @NgModule({
@@ -16,7 +17,8 @@ import { HomeComponent } from './home/home.component';
     AppComponent,
     ScanReceiptComponent,
     InventoryListComponent,
-    HomeComponent
+    HomeComponent,
+    DevicesComponent
   ],
   imports: [
     BrowserModule,
