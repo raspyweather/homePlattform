@@ -1,4 +1,4 @@
-export interface inventoryItem {
+export interface InventoryItem {
     name: string;
     price: number;
     bestBefore: string;
