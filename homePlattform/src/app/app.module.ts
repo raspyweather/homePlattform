@@ -10,7 +10,6 @@ import { ScanReceiptComponent } from './scan-receipt/scan-receipt.component';
 import { HomeComponent } from './home/home.component';
 import { DevicesComponent } from './devices/devices.component';
 
-
 @NgModule({
   declarations: [
     NavbarComponent,
