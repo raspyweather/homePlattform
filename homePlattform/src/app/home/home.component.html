@@ -1,1 +1,31 @@
+<ngb-carousel *ngIf="images">
+    <ng-template ngbSlide>
+        <a href="https://www.lidl.de/de/50-sixt-gutschein-fuer-30/p301512-c21286">
+            <img [src]="images[0]" alt="Random first slide">
+        </a>
+        <div class="carousel-caption">
+            <h3></h3>
+            <p></p>
+        </div>
+    </ng-template>
+    <ng-template ngbSlide>
+        <a href="https://www.lidl.de/de/dessous-fuer-sinnliche-momente/c23412">
+            <img [src]="images[1]" alt="Random second slide">
+        </a>
+        <div class="carousel-caption">
+            <h3></h3>
+            <p></p>
+        </div>
+    </ng-template>
+    <ng-template ngbSlide>
+        <a href="https://www.lidl.de/de/laessig-fuer-den-sommer-ab-20-05/c24229">
+            <img [src]="images[2]" style="width: 1182px; height: 300px; object-fit: cover" alt="Random third slide">
+        </a>
+        <div class="carousel-caption">
+            <h3></h3>
+            <p></p>
+        </div>
+    </ng-template>
+</ngb-carousel>
+<p style="padding-top: 5px; padding-bottom: 5px"></p>
 <a routerLink="/scanner"><button type="button" class="btn btn-primary">Kassenbon scannen</button></a>
