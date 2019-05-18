@@ -4,6 +4,7 @@ import { ScanReceiptComponent } from './scan-receipt/scan-receipt.component';
 import { InventoryListComponent } from './inventory-list/inventory-list.component';
 import { HomeComponent } from './home/home.component';
 import { DevicesComponent } from './devices/devices.component';
+import { TimelineComponent } from './timeline/timeline.component';
 
 const routes: Routes = [{
   component: ScanReceiptComponent,
@@ -24,6 +25,10 @@ const routes: Routes = [{
 {
   component: DevicesComponent,
   path: 'devices'
+},
+{
+  component: TimelineComponent,
+  path: 'timeline'
 }];
 
 @NgModule({
