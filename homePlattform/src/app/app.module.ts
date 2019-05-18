@@ -8,7 +8,9 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { InventoryListComponent } from './inventory-list/inventory-list.component';
 import { ScanReceiptComponent } from './scan-receipt/scan-receipt.component';
 import { HomeComponent } from './home/home.component';
+import { UpdateListComponent } from './update-list/update-list.component';
 import { DevicesComponent } from './devices/devices.component';
+import { InventoryService } from './inventory.service';
 import { TimelineComponent } from './timeline/timeline.component';
 
 @NgModule({
@@ -18,6 +20,7 @@ import { TimelineComponent } from './timeline/timeline.component';
     ScanReceiptComponent,
     InventoryListComponent,
     HomeComponent,
+    UpdateListComponent,
     DevicesComponent,
     TimelineComponent
   ],
@@ -26,7 +29,7 @@ import { TimelineComponent } from './timeline/timeline.component';
     AppRoutingModule,
     NgbModule
   ],
-  providers: [],
+  providers: [InventoryService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
