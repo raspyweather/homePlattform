@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { SmartDevice, SmartDeviceType } from './smartDevice.interface';
 import { DeviceService } from '../device.service';
 import * as moment from 'moment';
+import { EventService } from '../event.service';
 
 @Component({
   selector: 'app-devices',
@@ -16,7 +17,8 @@ export class DevicesComponent implements OnInit {
   public formDeviceAssociation = '';
   public showForm = false;
 
-  constructor(private readonly deviceService: DeviceService) { }
+  constructor(private readonly deviceService: DeviceService,
+    private readonly eventService: EventService) { }
 
   ngOnInit() {
     this.registeredDevices = this.deviceService.getDevices();
@@ -40,15 +42,29 @@ export class DevicesComponent implements OnInit {
     }
   }
 
-
-
   removeDevice(deviceIndex: number) {
-    const elements = this.deviceService.getDevices();
-    this.deviceService.setDevices(elements.filter((x, i) => i !== deviceIndex));
+    const removedDevice = this.registeredDevices[deviceIndex];
+    this.registeredDevices = this.deviceService.getDevices().filter((x, i) => i !== deviceIndex);
+    this.eventService.addEvent({
+      action: 'Remove',
+      title: 'Gerät' + removedDevice.name + ' wurde entfernt',
+      eventDate: moment().toISOString(),
+      source: 'Device',
+      sourceDetail: removedDevice
+    });
+    this.deviceService.setDevices(this.registeredDevices);
   }
 
   insertDevice(device: SmartDevice) {
     this.registeredDevices.push(device);
+    this.eventService.addEvent({
+      action: 'Add',
+      title: 'Neues Gerät hinzugefügt: ' + device.name,
+      description: 'Das Gerät wurde assoziiert mit ' + device.associatedDevice,
+      eventDate: moment().toISOString(),
+      source: 'Device',
+      sourceDetail: device
+    })
     this.deviceService.setDevices(this.registeredDevices);
   }
 
