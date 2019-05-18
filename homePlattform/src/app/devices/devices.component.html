@@ -1,0 +1,12 @@
+<h1>Geräte in Ihrem Haushalt</h1>
+<div class="list-group">
+  <div class="card" *ngFor="let device of registeredDevices" style="width: 18rem">
+    <div class="card-header">
+      <p class="text-success" style="font-size: 4em; text-align: center">{{device.currentEnergyConsumption}} Wh</p>
+    </div>
+    <div class="card-body">
+      <h5 class="card-title">{{device.name}}</h5>
+      <p class="card-text">Diese {{device.type}} wurde mit einem Mixer assoziiert.</p>
+    </div>
+  </div>
+</div>

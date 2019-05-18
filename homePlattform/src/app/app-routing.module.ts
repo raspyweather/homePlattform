@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { ScanReceiptComponent } from './scan-receipt/scan-receipt.component';
 import { InventoryListComponent } from './inventory-list/inventory-list.component';
 import { HomeComponent } from './home/home.component';
+import { DevicesComponent } from './devices/devices.component';
 
 const routes: Routes = [{
   component: ScanReceiptComponent,
@@ -19,6 +20,10 @@ const routes: Routes = [{
 {
   component: InventoryListComponent,
   path: 'inventory/:fromScan'
+},
+{
+  component: DevicesComponent,
+  path: 'devices'
 }];
 
 @NgModule({
