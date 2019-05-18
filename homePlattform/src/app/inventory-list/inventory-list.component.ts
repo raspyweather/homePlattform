@@ -14,6 +14,7 @@ export class InventoryListComponent implements OnInit {
   public formProductName = '';
   public formProductPrice = 0.00;
 
+  public items: InventoryItem[];
   public showForm = false;
   public formProductBestBefore = moment().locale('de').locale('de').format('DD-MM-YYYY');
 
@@ -22,8 +23,8 @@ export class InventoryListComponent implements OnInit {
 
   ngOnInit() {
     const inventoryListJsonString = '';
-    const items = this.inventoryService.getInventoryElements();
-    if (items.length === 0) {
+    this.items = this.inventoryService.getInventoryElements();
+    if (this.items.length === 0) {
       this.insertInventoryItem(
         {
           name: 'Apple Loopies',
@@ -33,8 +34,8 @@ export class InventoryListComponent implements OnInit {
         });
     }
     this.route.params.subscribe((param) => {
-      if (param['fromScan'] !== undefined) {
-        console.log(param['fromScan']);
+      if (param.fromScan !== undefined) {
+        console.log(param.fromScan);
         this.addReceiptItems();
       }
     });
@@ -64,12 +65,13 @@ export class InventoryListComponent implements OnInit {
   }
 
   removeInventoryItem(inventoryItem: number) {
-    const elements = this.inventoryService.getInventoryElements();
-    this.inventoryService.setInventoryElements(elements.filter((x, i) => i !== inventoryItem));
+    this.items = this.items.filter((x, i) => i !== inventoryItem);
+    this.inventoryService.setInventoryElements(this.items);
   }
 
   insertInventoryItem(inventoryItem: InventoryItem) {
-    this.inventoryService.setInventoryElements([...this.inventoryService.getInventoryElements(), inventoryItem]);
+    this.items.unshift(inventoryItem);
+    this.inventoryService.setInventoryElements(this.items);
   }
 
   resetFormFields() {
