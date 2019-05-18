@@ -1,44 +1,61 @@
 <h1>Inventar</h1>
 
-<!--button (click) = "addReceiptItems()">Fill List</button>-->
+<button class="btn btn-primary" *ngIf="!showForm" (click)="showForm =!showForm">
+  <i class="fa fa-plus"></i>
+  Eintrag hinzufügen
+</button>
 
-<form>
-    <div class="form-group">
-      <label for="productName">Produktname</label>
-      <input [value]="formProductName" (input)="formProductName = $event.target.value" type="string" class="form-control" id="productName" aria-describedby="productNameHelp" placeholder="Maya Mate">
-      <small id="productNameHelp" class="form-text text-muted">Tragen Sie hier bitte den Namen des gekauften Produkts ein.</small>
-    </div>
-    <div class="form-group">
-      <label for="productPrice">Preis</label>
-      <input [value]="formProductPrice" (input)="formProductPrice = $event.target.value" type="number" step=0.01 class="form-control" id="productPrice" aria-describedby="productPriceHelp" placeholder="0.00">
-      <small id="productPriceHelp" class="form-text text-muted">Tragen Sie hier bitte den Preis des gekauften Produkts ein.</small>
-    </div>
-    <div class="form-group">
-      <label for="productBestBefore">Mindesthaltbarkeitsdatum</label>
-      <input [value]="formProductBestBefore" (input)="formProductBestBefore = $event.target.value" type="string" class="form-control" id="productBestBefore" aria-describedby="productBestBeforeHelp" placeholder="01-01-1970">
-      <small id="productBestBeforeHelp" class="form-text text-muted">Tragen Sie hier bitte das Mindesthaltbarkeitsdatum des Produkts ein.</small>
-    </div>
+<form *ngIf="showForm">
+  <div class="form-group">
+    <label for="productName">Produktname</label>
+    <input [value]="formProductName" (input)="formProductName = $event.target.value" type="string" class="form-control"
+      id="productName" aria-describedby="productNameHelp" placeholder="Maya Mate">
+    <small id="productNameHelp" class="form-text text-muted">Tragen Sie hier bitte den Namen des gekauften Produkts
+      ein.</small>
+  </div>
+  <div class="form-group">
+    <label for="productPrice">Preis</label>
+    <input [value]="formProductPrice" (input)="formProductPrice = $event.target.value" type="number" step=0.01
+      class="form-control" id="productPrice" aria-describedby="productPriceHelp" placeholder="0.00">
+    <small id="productPriceHelp" class="form-text text-muted">Tragen Sie hier bitte den Preis des gekauften Produkts
+      ein.</small>
+  </div>
+  <div class="form-group">
+    <label for="productBestBefore">Mindesthaltbarkeitsdatum</label>
+    <input [value]="formProductBestBefore" (input)="formProductBestBefore = $event.target.value" type="string"
+      class="form-control" id="productBestBefore" aria-describedby="productBestBeforeHelp" placeholder="01-01-1970">
+    <small id="productBestBeforeHelp" class="form-text text-muted">Tragen Sie hier bitte das Mindesthaltbarkeitsdatum
+      des Produkts ein.</small>
+  </div>
 
-    <button type="button" class="btn btn-primary" (click) = "addReceiptItemManually()">Produkt zum Inventar hinzufügen</button>
-  </form>
+  <button type="button" class="btn btn-primary m-1" (click)="addReceiptItemManually()">
+    <i class="fa fa-plus"></i>
+    Produkt zum Inventar hinzufügen</button>
+
+  <button type="button" class="btn btn-secondary m-1" (click)="showForm = false">
+    <i class="fa fa-undo"></i>
+    Zurück</button>
+</form>
 <p></p>
 <ul class="list-group">
-    <div class="card" *ngFor="let inventoryElement of inventoryElements; let idx = index">
-        <div class="card-body">
-          <div class="row">
-            <div class="col">
-                <h5 class="card-title">{{inventoryElement.name}}</h5>
-                <p class="card-text">Mindestens haltbar bis: {{inventoryElement.bestBefore}}</p>
-            </div>
-            <div class="col">
-              <p class="card-text">Preis: {{inventoryElement.price}}€</p>
-              <p class="card-text">Hinzugefügt am {{inventoryElement.addedAt}}</p>
-            </div>
-            <div class="col">
-              <button type="button" class="btn btn-primary" (click) = "removeInventoryItem(idx)">Eintrag entfernen</button>
-            </div>
-          </div>
-          
+  <div class="card" *ngFor="let inventoryElement of inventoryElements; let idx = index">
+    <div class="card-body">
+      <div class="d-flex row">
+        <div class="col">
+          <h5 class="card-title">{{inventoryElement.name}}</h5>
+          <p class="card-text">Mindestens haltbar bis: {{inventoryElement.bestBefore}}</p>
+        </div>
+        <div class="col">
+          <p class="card-text">Preis: {{inventoryElement.price}}€</p>
+          <p class="card-text">Hinzugefügt am {{inventoryElement.addedAt}}</p>
+        </div>
+        <div class="col">
+          <button type="button" class="btn btn-danger" (click)="removeInventoryItem(idx)">
+            <i class="fa fa-trash"></i>
+            Eintrag entfernen</button>
         </div>
       </div>
+
+    </div>
+  </div>
 </ul>
