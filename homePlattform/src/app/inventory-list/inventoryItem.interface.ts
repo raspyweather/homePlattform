@@ -1,6 +1,6 @@
 export interface inventoryItem {
-    name:String;
-    price:Number;
-    bestBefore:String;
-    addedAt:String;
+    name: string;
+    price: number;
+    bestBefore: string;
+    addedAt: string;
 }
