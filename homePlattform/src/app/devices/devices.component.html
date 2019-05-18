@@ -1,12 +1,51 @@
 <h1>Geräte in Ihrem Haushalt</h1>
+
+<button class="btn btn-primary" *ngIf="!showForm" (click)="showForm =!showForm">
+  <i class="fa fa-plus"></i>
+  Gerät hinzufügen
+</button>
+
+<form *ngIf="showForm">
+  <div class="form-group">
+    <label for="deviceName">Smart Device</label>
+    <input [value]="formDeviceName" (input)="formDeviceName = $event.target.value" type="string" class="form-control"
+      id="deviceName" aria-describedby="deviceNameHelp" placeholder="Stereo-Anlage">
+    <small id="deviceNameHelp" class="form-text text-muted">Tragen Sie hier bitte einen Namen für die 'Smarte Steckdose'
+      ein.</small>
+  </div>
+  <div class="form-group">
+    <label for="deviceAssociation">Assoziiertes Gerät</label>
+    <input [value]="formDeviceAssociation" (input)="formDeviceAssociation = $event.target.value" type="String"
+      class="form-control" id="deviceAssociation" aria-describedby="deviceAssociationHelp" placeholder="Stereo-Anlage">
+    <small id="deviceAssociationHelp" class="form-text text-muted">Tragen Sie hier bitte das Gerät ein, mit welchem die
+      'Smarte Steckdose' assoziiert werden soll.</small>
+  </div>
+
+  <button type="button" class="btn btn-primary m-1" (click)="registerDeviceManually()">
+    <i class="fa fa-plus"></i>
+    'Smarte Steckdose' zur Geräteliste hinzufügen</button>
+
+  <button type="button" class="btn btn-secondary m-1" (click)="showForm = false">
+    <i class="fa fa-undo"></i>
+    Zurück</button>
+</form>
+
 <div class="list-group list-group-horizontal">
-  <div class="card" *ngFor="let device of registeredDevices" style="width: 18rem; margin: 5px">
+  <div class="card device" *ngFor="let device of getDevices(); let idx = index" style="width: 24rem; margin-right: 10px; margin-top: 5px">
     <div class="card-header">
-      <p class="{{device.currentEnergyConsumption >= 100.0 ? 'text-danger' : 'text-success'}}" style="font-size: 2.5em; text-align: center">{{device.currentEnergyConsumption}} Watt</p>
+      <p class="{{device.currentEnergyConsumption >= 100.0 ? 'text-danger' : 'text-success'}}"
+        style="font-size: 2.5em; text-align: center">{{device.currentEnergyConsumption}} Watt</p>
     </div>
     <div class="card-body">
-      <h5 class="card-title">{{device.name}}</h5>
-      <p class="card-text">Diese {{device.type}} wurde mit einem {{device.associatedDevice}} assoziiert.</p>
+      <div class="row">
+        <div class="col">
+          <h5 class="card-title">{{device.name}}</h5>
+          <p class="card-text">Diese {{device.type}} wurde mit einem {{device.associatedDevice}} assoziiert.</p>
+        </div>
+        <div class="col-2 align-self-center">
+          <button type="button" class="btn btn-danger" (click)="removeDevice(idx)">
+            <i class="fa fa-trash"></i></button>
+        </div>
+      </div>
     </div>
   </div>
-</div>
