@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { smartDevice } from './devices/smartDevice.interface';
+import { SmartDevice } from './devices/smartDevice.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -10,12 +10,12 @@ export class DeviceService {
 
   constructor() { }
 
-  getDevices(): smartDevice[] {
+  getDevices(): SmartDevice[] {
     const str = localStorage.getItem(this.LOCAL_STORAGE_KEY) || '[]';
     return JSON.parse(str);
   }
 
-  setDevices(devices: smartDevice[]) {
+  setDevices(devices: SmartDevice[]) {
     localStorage.setItem(this.LOCAL_STORAGE_KEY, JSON.stringify(devices));
   }
 }

@@ -1,8 +1,9 @@
-export interface smartDevice{
-    name: String;
-    associatedDevice: String;
-    currentEnergyConsumption: Number;
+export interface SmartDevice {
+    name: string;
+    associatedDevice: string;
+    currentEnergyConsumption: number;
     type: SmartDeviceType;
+    addedAt: string;
 }
 
 export enum SmartDeviceType {
