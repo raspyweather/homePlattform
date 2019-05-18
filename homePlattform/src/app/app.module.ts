@@ -8,6 +8,8 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { InventoryListComponent } from './inventory-list/inventory-list.component';
 import { ScanReceiptComponent } from './scan-receipt/scan-receipt.component';
 import { HomeComponent } from './home/home.component';
+import { UpdateListComponent } from './update-list/update-list.component';
+
 
 @NgModule({
   declarations: [
@@ -15,7 +17,8 @@ import { HomeComponent } from './home/home.component';
     AppComponent,
     ScanReceiptComponent,
     InventoryListComponent,
-    HomeComponent
+    HomeComponent,
+    UpdateListComponent
   ],
   imports: [
     BrowserModule,
