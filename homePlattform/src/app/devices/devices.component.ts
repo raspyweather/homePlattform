@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { smartDevice, SmartDeviceType } from './smartDevice.interface';
-import { devModeEqual } from '@angular/core/src/change_detection/change_detection';
+import { DeviceService } from '../device.service';
 
 @Component({
   selector: 'app-devices',
@@ -9,56 +9,48 @@ import { devModeEqual } from '@angular/core/src/change_detection/change_detectio
 })
 export class DevicesComponent implements OnInit {
 
-  LOCAL_STORAGE_KEY:string = "deviceList";
 
   public registeredDevices: smartDevice[] = [];
-  public formDeviceName: String = "";
-  public formDeviceAssociation: String = "";
-
+  public formDeviceName = '';
+  public formDeviceAssociation = '';
   public showForm = false;
 
-  constructor() { }
+  constructor(private readonly deviceService: DeviceService) { }
 
   ngOnInit() {
     const deviceListJsonString = '';
-    const devices = this.getDevices();
-    if(devices.length === 0){
+    const devices = this.deviceService.getDevices();
+    if (devices.length === 0) {
       this.insertDevice(
-        { 
-          name: "Mixer", 
-          associatedDevice: "Mixer", 
-          currentEnergyConsumption: 0.2, 
-          type: SmartDeviceType.SmartPlug 
+        {
+          name: 'Mixer',
+          associatedDevice: 'Mixer',
+          currentEnergyConsumption: 0.2,
+          type: SmartDeviceType.SmartPlug
         });
-        this.insertDevice(
-          {
-            name: "60\" Plasma TV", 
-            associatedDevice: "Plasma TV", 
-            currentEnergyConsumption: 450.3, 
-            type: SmartDeviceType.SmartPlug
-          });
+      this.insertDevice(
+        {
+          name: '60" Plasma TV',
+          associatedDevice: 'Plasma TV',
+          currentEnergyConsumption: 450.3,
+          type: SmartDeviceType.SmartPlug
+        });
     }
   }
 
-  getDevices(): smartDevice[] {
-    const str = localStorage.getItem(this.LOCAL_STORAGE_KEY) || '[]';
-    return JSON.parse(str);
-  }
 
-  setDevices(devices: smartDevice[]) {
-    localStorage.setItem(this.LOCAL_STORAGE_KEY, JSON.stringify(devices));
-  }
 
-  removeDevice(deviceIndex: number){
-    const elements = this.getDevices();
-    this.setDevices(elements.filter((x, i) => i !== deviceIndex));
+  removeDevice(deviceIndex: number) {
+    const elements = this.deviceService.getDevices();
+    this.deviceService.setDevices(elements.filter((x, i) => i !== deviceIndex));
   }
 
   insertDevice(device: smartDevice) {
-    this.setDevices([...this.getDevices(), device]);
+    this.registeredDevices.push(device);
+    this.deviceService.setDevices(this.registeredDevices);
   }
 
-  registerDeviceManually(){
+  registerDeviceManually() {
     const device: smartDevice = {
       name: this.formDeviceName,
       associatedDevice: this.formDeviceAssociation,
@@ -69,9 +61,9 @@ export class DevicesComponent implements OnInit {
     this.resetFormFields();
   }
 
-  resetFormFields(){
-    this.formDeviceName = "";
-    this.formDeviceAssociation = "";
+  resetFormFields() {
+    this.formDeviceName = '';
+    this.formDeviceAssociation = '';
   }
 
 }
