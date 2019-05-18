@@ -6,6 +6,7 @@ import { HomeComponent } from './home/home.component';
 import { UpdateListComponent } from './update-list/update-list.component';
 import { DevicesComponent } from './devices/devices.component';
 import { TimelineComponent } from './timeline/timeline.component';
+import { RecipesComponent } from './recipes/recipes.component';
 
 const routes: Routes = [{
   component: ScanReceiptComponent,
@@ -35,6 +36,10 @@ const routes: Routes = [{
 {
   component: TimelineComponent,
   path: 'timeline'
+},
+{
+  component: RecipesComponent,
+  path: 'recipes'
 }];
 
 @NgModule({

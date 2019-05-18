@@ -12,6 +12,7 @@ import { UpdateListComponent } from './update-list/update-list.component';
 import { DevicesComponent } from './devices/devices.component';
 import { InventoryService } from './inventory.service';
 import { TimelineComponent } from './timeline/timeline.component';
+import { RecipesComponent } from './recipes/recipes.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { TimelineComponent } from './timeline/timeline.component';
     HomeComponent,
     UpdateListComponent,
     DevicesComponent,
-    TimelineComponent
+    TimelineComponent,
+    RecipesComponent
   ],
   imports: [
     BrowserModule,
