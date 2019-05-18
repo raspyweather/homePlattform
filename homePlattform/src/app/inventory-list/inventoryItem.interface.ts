@@ -4,4 +4,5 @@ export interface InventoryItem {
     bestBefore: string;
     addedAt: string;
     imageUrl?: string;
+    userCheckRecommended?: boolean;
 }
