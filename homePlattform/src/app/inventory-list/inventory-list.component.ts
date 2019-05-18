@@ -14,6 +14,8 @@ export class InventoryListComponent implements OnInit {
   public inventoryElements: inventoryItem[] = [];
   public formProductName = '';
   public formProductPrice = 0.00;
+
+  public showForm = false;
   public formProductBestBefore = moment().locale('de').locale('de').format('DD-MM-YYYY');
 
   constructor(private readonly route: ActivatedRoute) { }
@@ -95,6 +97,7 @@ export class InventoryListComponent implements OnInit {
     this.formProductName = '';
     this.formProductPrice = 0.00;
     this.formProductBestBefore = '';
+    this.showForm = false;
   }
 
   clickTestButton() {
