@@ -9,7 +9,7 @@ import { InventoryListComponent } from './inventory-list/inventory-list.componen
 import { ScanReceiptComponent } from './scan-receipt/scan-receipt.component';
 import { HomeComponent } from './home/home.component';
 import { UpdateListComponent } from './update-list/update-list.component';
-
+import { DevicesComponent } from './devices/devices.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +18,8 @@ import { UpdateListComponent } from './update-list/update-list.component';
     ScanReceiptComponent,
     InventoryListComponent,
     HomeComponent,
-    UpdateListComponent
+    UpdateListComponent,
+    DevicesComponent
   ],
   imports: [
     BrowserModule,
