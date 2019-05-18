@@ -1,0 +1,21 @@
+<h1>Rezepte</h1>
+
+<div class="list-group list-group-horizontal">
+  <div class="card recipe" *ngFor="let recipe of recipes; let idx = index"
+    style="width: 24rem; margin-right: 10px; margin-top: 5px">
+    <div class="card-body">
+      <h5 class="card-title" style="text-align: center">{{recipe.name}}</h5>
+      <h6 class="card-subtitle" style="padding-bottom: 5px; text-decoration: underline; font-weight: bold;">Zutaten</h6>
+      <ul>
+        <li class="card-text" *ngFor="let ingredient of recipe.ingredients">{{ingredient.quantity}} {{ingredient.unit}}
+          {{ingredient.name}}
+        </li>
+      </ul>
+      <h6 class="card-subtitle" style="padding-bottom: 5px; text-decoration: underline; font-weight: bold;">Zubereitung
+      </h6>
+      <ol>
+        <li class="card-text" *ngFor="let step of recipe.preparation">{{step.description}}</li>
+      </ol>
+    </div>
+  </div>
+</div>
