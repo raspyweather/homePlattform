@@ -1,5 +1,6 @@
 export interface smartDevice{
     name: String;
+    associatedDevice: String;
     currentEnergyConsumption: Number;
     type: SmartDeviceType;
 }
