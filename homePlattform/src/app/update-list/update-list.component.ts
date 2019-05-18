@@ -9,8 +9,6 @@ import { InventoryItem } from '../inventory-list/inventoryItem.interface';
   styleUrls: ['./update-list.component.scss']
 })
 export class UpdateListComponent implements OnInit {
-
-
   constructor(private readonly inventoryService: InventoryService) { }
   public items: CardItem[];
   accept() {

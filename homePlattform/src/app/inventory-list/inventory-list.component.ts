@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { InventoryItem } from './inventoryItem.interface';
 import { ActivatedRoute } from '@angular/router';
 import * as moment from 'moment';
+import { InventoryService } from '../inventory.service';
 
 @Component({
   selector: 'app-inventory-list',
@@ -13,10 +14,12 @@ export class InventoryListComponent implements OnInit {
   public formProductName = '';
   public formProductPrice = 0.00;
 
+  public items: InventoryItem[];
   public showForm = false;
   public formProductBestBefore = moment().locale('de').locale('de').format('DD-MM-YYYY');
 
-  constructor(private readonly route: ActivatedRoute) { }
+  constructor(private readonly route: ActivatedRoute,
+    private readonly inventoryService: InventoryService) { }
 
   ngOnInit() {
     const inventoryListJsonString = '';
@@ -35,20 +38,12 @@ export class InventoryListComponent implements OnInit {
       console.log(this.items);
     }
     this.route.params.subscribe((param) => {
-      if (param['fromScan'] !== undefined) {
-        console.log(param['fromScan']);
+      if (param.fromScan !== undefined) {
+        console.log(param.fromScan);
         this.addReceiptItems();
       }
     });
 
-  }
-
-  public getInventoryElements(): InventoryItem[] {
-    const str = localStorage.getItem('inventory') || '[]';
-    return JSON.parse(str);
-  }
-  public setInventoryElements(items: InventoryItem[]) {
-    localStorage.setItem('inventory', JSON.stringify(items));
   }
 
   public addReceiptItems() {
@@ -74,12 +69,13 @@ export class InventoryListComponent implements OnInit {
   }
 
   removeInventoryItem(inventoryItem: number) {
-    const elements = this.getInventoryElements();
-    this.setInventoryElements(elements.filter((x, i) => i !== inventoryItem));
+    this.items = this.items.filter((x, i) => i !== inventoryItem);
+    this.inventoryService.setInventoryElements(this.items);
   }
 
   insertInventoryItem(inventoryItem: InventoryItem) {
-    this.setInventoryElements([...this.getInventoryElements(), inventoryItem]);
+    this.items.unshift(inventoryItem);
+    this.inventoryService.setInventoryElements(this.items);
   }
 
   resetFormFields() {

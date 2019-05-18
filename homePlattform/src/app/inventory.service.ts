@@ -14,5 +14,4 @@ export class InventoryService {
   public setInventoryElements(items: InventoryItem[]) {
     localStorage.setItem('inventory', JSON.stringify(items));
   }
-
 }

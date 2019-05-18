@@ -37,7 +37,7 @@
 </form>
 <p></p>
 <ul class="list-group">
-  <div class="card" *ngFor="let inventoryElement of getInventoryElements(); let idx = index">
+  <div class="card inventoryItem" *ngFor="let inventoryElement of items; let idx = index">
     <div class="card-body">
       <div class="d-flex row">
         <div class="col">
@@ -58,3 +58,7 @@
     </div>
   </div>
 </ul>
+
+<a routerLink="/inventory-update">
+  <button type="button" class="btn btn-primary"><i class="fa fa-ticket-alt"></i>Coupons prüfen</button>
+</a>
