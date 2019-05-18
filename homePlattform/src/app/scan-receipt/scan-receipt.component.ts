@@ -37,7 +37,7 @@ export class ScanReceiptComponent implements OnInit {
       document.getElementById('loading_overlay').classList.add('active')
       window.setTimeout(()=>{
         this.router.navigateByUrl("/inventory/:fromScan")
-      },1000)
+      },500)
     });
   }
 
