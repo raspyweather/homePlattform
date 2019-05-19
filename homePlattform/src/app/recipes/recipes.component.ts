@@ -6,6 +6,7 @@ import { Recipe } from './recipe.interface';
   templateUrl: './recipes.component.html',
   styleUrls: ['./recipes.component.scss']
 })
+
 export class RecipesComponent implements OnInit {
 
   public recipes: Recipe[] = [];
@@ -15,16 +16,16 @@ export class RecipesComponent implements OnInit {
   ngOnInit() {
     this.recipes.push(
       {
-        name: "Bananenmilchshake", 
+        name: "Bananenmilchshake",
         ingredients: [
           {
-            name: "Banane", 
-            quantity: 1, 
+            name: "Banane",
+            quantity: 1,
             unit: "Stck."
-          }, 
+          },
           {
-            name:"Milch", 
-            quantity: 200, 
+            name: "Milch",
+            quantity: 200,
             unit: "ml"
           },
           {
