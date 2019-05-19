@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { smartDevice, SmartDeviceType } from './smartDevice.interface';
-import { devModeEqual } from '@angular/core/src/change_detection/change_detection';
+import { SmartDevice, SmartDeviceType } from './smartDevice.interface';
+import { DeviceService } from '../device.service';
+import * as moment from 'moment';
+import { EventService } from '../event.service';
 
 @Component({
   selector: 'app-devices',
@@ -9,69 +11,78 @@ import { devModeEqual } from '@angular/core/src/change_detection/change_detectio
 })
 export class DevicesComponent implements OnInit {
 
-  LOCAL_STORAGE_KEY:string = "deviceList";
 
-  public registeredDevices: smartDevice[] = [];
-  public formDeviceName: String = "";
-  public formDeviceAssociation: String = "";
-
+  public registeredDevices: SmartDevice[] = [];
+  public formDeviceName = '';
+  public formDeviceAssociation = '';
   public showForm = false;
 
-  constructor() { }
+  constructor(private readonly deviceService: DeviceService,
+    private readonly eventService: EventService) { }
 
   ngOnInit() {
-    const deviceListJsonString = '';
-    const devices = this.getDevices();
-    if(devices.length === 0){
+    this.registeredDevices = this.deviceService.getDevices();
+    if (this.registeredDevices.length === 0) {
       this.insertDevice(
-        { 
-          name: "Mixer", 
-          associatedDevice: "Mixer", 
-          currentEnergyConsumption: 0.2, 
-          type: SmartDeviceType.SmartPlug 
+        {
+          name: 'Mixer',
+          associatedDevice: 'Mixer',
+          currentEnergyConsumption: 0.2,
+          type: SmartDeviceType.SmartPlug,
+          addedAt: moment('20150420', 'YYYYMMDD').locale('DE').format()
         });
-        this.insertDevice(
-          {
-            name: "60\" Plasma TV", 
-            associatedDevice: "Plasma TV", 
-            currentEnergyConsumption: 450.3, 
-            type: SmartDeviceType.SmartPlug
-          });
+      this.insertDevice(
+        {
+          name: '60" Plasma TV',
+          associatedDevice: 'Plasma TV',
+          currentEnergyConsumption: 450.3,
+          type: SmartDeviceType.SmartPlug,
+          addedAt: moment('20120620', 'YYYYMMDD').locale('DE').format()
+        });
     }
   }
 
-  getDevices(): smartDevice[] {
-    const str = localStorage.getItem(this.LOCAL_STORAGE_KEY) || '[]';
-    return JSON.parse(str);
+  removeDevice(deviceIndex: number) {
+    const removedDevice = this.registeredDevices[deviceIndex];
+    this.registeredDevices = this.deviceService.getDevices().filter((x, i) => i !== deviceIndex);
+    this.eventService.addEvent({
+      action: 'Remove',
+      title: 'Gerät ' + removedDevice.name + ' wurde entfernt',
+      eventDate: moment().toISOString(),
+      source: 'Device',
+      sourceDetail: removedDevice
+    });
+    this.deviceService.setDevices(this.registeredDevices);
   }
 
-  setDevices(devices: smartDevice[]) {
-    localStorage.setItem(this.LOCAL_STORAGE_KEY, JSON.stringify(devices));
+  insertDevice(device: SmartDevice) {
+    this.registeredDevices.push(device);
+    this.eventService.addEvent({
+      action: 'Add',
+      title: 'Neues Gerät hinzugefügt: ' + device.name,
+      description: 'Das Gerät wurde assoziiert mit ' + device.associatedDevice,
+      eventDate: moment().toISOString(),
+      source: 'Device',
+      sourceDetail: device
+    })
+    this.deviceService.setDevices(this.registeredDevices);
   }
 
-  removeDevice(deviceIndex: number){
-    const elements = this.getDevices();
-    this.setDevices(elements.filter((x, i) => i !== deviceIndex));
-  }
-
-  insertDevice(device: smartDevice) {
-    this.setDevices([...this.getDevices(), device]);
-  }
-
-  registerDeviceManually(){
-    const device: smartDevice = {
+  registerDeviceManually() {
+    const device: SmartDevice = {
       name: this.formDeviceName,
       associatedDevice: this.formDeviceAssociation,
       currentEnergyConsumption: parseFloat(((Math.random() * (900.00 - 0.00)) / 4.0).toFixed(2)),
-      type: SmartDeviceType.SmartPlug
+      type: SmartDeviceType.SmartPlug,
+      addedAt: moment().locale('DE').format()
     };
     this.insertDevice(device);
     this.resetFormFields();
   }
 
-  resetFormFields(){
-    this.formDeviceName = "";
-    this.formDeviceAssociation = "";
+  resetFormFields() {
+    this.formDeviceName = '';
+    this.formDeviceAssociation = '';
   }
 
 }

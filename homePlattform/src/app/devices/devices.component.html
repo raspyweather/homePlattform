@@ -30,19 +30,20 @@
     Zurück</button>
 </form>
 
-<div class="list-group list-group-horizontal">
-  <div class="card device" *ngFor="let device of getDevices(); let idx = index" style="width: 24rem; margin-right: 10px; margin-top: 5px">
+<div class="d-flex flex-row flex-wrap">
+  <div class="card device flex-fill flex-shrink" *ngFor="let device of registeredDevices; let idx = index"
+    style="width: 24rem; margin-right: 10px; margin-top: 5px">
     <div class="card-header">
       <p class="{{device.currentEnergyConsumption >= 100.0 ? 'text-danger' : 'text-success'}}"
         style="font-size: 2.5em; text-align: center">{{device.currentEnergyConsumption}} Watt</p>
     </div>
     <div class="card-body">
-      <div class="row">
-        <div class="col">
+      <div class="d-flex flex-row flex-wrap">
+        <div class="col p-0">
           <h5 class="card-title">{{device.name}}</h5>
           <p class="card-text">Diese {{device.type}} wurde mit einem {{device.associatedDevice}} assoziiert.</p>
         </div>
-        <div class="col-2 align-self-center">
+        <div class="col-auto p-0 pl-2 align-self-center ">
           <button type="button" class="btn btn-danger" (click)="removeDevice(idx)">
             <i class="fa fa-trash"></i></button>
         </div>
