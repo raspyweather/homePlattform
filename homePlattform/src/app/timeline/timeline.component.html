@@ -12,7 +12,7 @@
       <div class="timeline-panel">
         <div class="timeline-heading">
           <h4 class="timeline-title">{{timelineEvent.title}}</h4>
-          <p><small class="text-muted"><i class="glyphicon glyphicon-time"></i>
+          <p><small class="text-muted"><i class="far fa-clock"></i>
               {{getDurationString( timelineEvent.eventDate)}}</small></p>
         </div>
         <div *ngIf="timelineEvent.description" class="timeline-body">
@@ -25,7 +25,7 @@
       <div class="timeline-panel">
         <div class="timeline-heading">
           <h4 class="timeline-title">Einkauf hinzugefügt</h4>
-          <p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> vor 2 Stunden </small></p>
+          <p><small class="text-muted"><i class="far fa-clock"></i> vor 2 Stunden </small></p>
         </div>
         <div class="timeline-body">
           <p>Einkauf mit:</p>
@@ -45,7 +45,7 @@
       <div class="timeline-panel">
         <div class="timeline-heading">
           <h4 class="timeline-title">Smarte Steckdose hinzugefügt</h4>
-          <p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> vor 8 Stunden </small></p>
+          <p><small class="text-muted"><i class="far fa-clock"></i> vor 8 Stunden </small></p>
         </div>
         <div class="timeline-body">
           <p>Sie haben die smarte Steckdose 'Mixer' hinzugefügt, die sie mit ihrem Mixer assoziiert haben.</p>
@@ -57,7 +57,7 @@
       <div class="timeline-panel">
         <div class="timeline-heading">
           <h4 class="timeline-title">Fernseher verwendet</h4>
-          <p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> vor 13 Stunden </small></p>
+          <p><small class="text-muted"><i class="far fa-clock"></i> vor 13 Stunden </small></p>
         </div>
         <div class="timeline-body">
           <p>Ihre smarte Steckdose 'Plasma TV' hat einen 4 Stunden andauernden Stromverbrauch erkannt und Sie im
@@ -68,11 +68,11 @@
       </div>
     </li>
     <li class="timeline-inverted">
-      <div class="timeline-badge success"><i class="fa fa-check"></i></div>
+      <div class="timeline-badge" style="background: yellowgreen"><i class="fa fa-check"></i></div>
       <div class="timeline-panel">
         <div class="timeline-heading">
           <h4 class="timeline-title">Toastbrot aufgebraucht</h4>
-          <p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> vor 2 Tagen </small></p>
+          <p><small class="text-muted"><i class="far fa-clock"></i> vor 2 Tagen </small></p>
         </div>
         <div class="timeline-body">
           <p>Sie haben manuell angegeben, dass sie Ihr im Inventar vorhandenes Toastbrot restlos aufgebraucht haben.</p>
@@ -80,16 +80,16 @@
       </div>
     </li>
     <li>
-      <div class="timeline-badge danger"><i class="fa fa-thumbs-down"></i></div>
+      <div class="timeline-badge danger">🤮</div>
+      <!--<i class="fas fa-hourglass-end"></i></div>-->
       <div class="timeline-panel">
         <div class="timeline-heading">
           <h4 class="timeline-title">Mindesthaltbarkeitsdatum abgelaufen</h4>
-          <p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> vor 3 Tagen </small></p>
+          <p><small class="text-muted"><i class="far fa-clock"></i> vor 3 Tagen </small></p>
         </div>
         <div class="timeline-body">
           <p>Das Mindesthaltbarkeitsdatum ihrer Vollmilch ist abgelaufen, bevor Sie sie als verbraucht markiert haben 😢
           </p>
-          <i class="fa fa-sad-tear"></i>
         </div>
       </div>
     </li>
@@ -98,7 +98,7 @@
       <div class="timeline-panel">
         <div class="timeline-heading">
           <h4 class="timeline-title">Vorgeschlagenes Rezept verwendet</h4>
-          <p><small class="text-muted"><i class="glyphicon glyphicon-time"></i> vor 4 Tagen </small></p>
+          <p><small class="text-muted"><i class="far fa-clock"></i> vor 4 Tagen </small></p>
         </div>
         <div class="timeline-body">
           <p>Sie haben das von uns vorgeschlagene Rezept verwendet, um ihre letzten Eier aufzubrauchen! 🎉</p>

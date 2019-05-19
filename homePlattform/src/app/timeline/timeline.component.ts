@@ -18,40 +18,47 @@ export class TimelineComponent implements OnInit {
     const now = moment();
     const date = moment(dateStr);
     const diff = moment.duration(now.diff(moment(dateStr)));
+    const beforeX = moment(dateStr).locale("de").fromNow();
     if (diff.asDays() >= 7) {
       return date.locale('de').format('Do MMMM YYYY');
     }
-    return 'vor ' + diff.locale('de').humanize(true);
+    return beforeX;//'vor ' + diff.locale('de').humanize(true);
   }
   getIconClass(timelineEvent: TimelineEvent): IconStyleOption {
+    if (timelineEvent.action === 'ScanReceipt' && timelineEvent.source === 'Inventory') {
+      return {
+        background: 'yellowgreen',
+        iconClass: 'fas fa-cart-plus'
+      }
+    }
     if (timelineEvent.action === 'Add' && timelineEvent.source === 'Inventory') {
       return {
         background: 'yellowgreen',
-        iconClass: 'fa fa-cart-plus'
+        iconClass: 'fas fa-plus'
       };
     }
     if (timelineEvent.action === 'Expired' && timelineEvent.source === 'Inventory') {
       return {
         background: 'bordeaux',
-        iconClass: 'fa fa-clock'
+        iconClass: 'fas fa-hourglass-end'
       }
     }
     if (timelineEvent.action === 'Remove' && timelineEvent.source === 'Inventory') {
       return {
-        background: 'red',
-        iconClass: 'fa fa-trash'
+        background: 'yellowgreen',
+        iconClass: 'fas fa-check'
       }
     }
     if (timelineEvent.action === 'Add' && timelineEvent.source === 'Device') {
       return {
-        background: 'green',
-        iconClass: 'fa fa-plus'
+        background: 'orange',
+        iconClass: 'fas fa-plus'
       }
     }
     if (timelineEvent.action === 'Remove' && timelineEvent.source === 'Device') {
       return {
         background: 'orange',
-        iconClass: 'fa fa-times'
+        iconClass: 'fas fa-minus'
       }
     }
     console.log(timelineEvent);
@@ -60,11 +67,6 @@ export class TimelineComponent implements OnInit {
     console
       .log('init events');
     this.events = this.eventService.getEvents();
-    /*const now = moment();
-    this.addedDevices = devices.filter(device => {
-      const diff = moment.duration(now.diff(moment(device.addedAt)));
-      return diff.asHours() <= 2;
-    });*/
   }
 }
 interface IconStyleOption {

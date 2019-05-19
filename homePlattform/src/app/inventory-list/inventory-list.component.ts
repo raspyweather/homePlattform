@@ -80,6 +80,13 @@ export class InventoryListComponent implements OnInit {
     };
     this.insertInventoryItem(inventoryItem);
     this.resetFormFields();
+    this.eventService.addEvent({
+      action: 'Add',
+      title: inventoryItem.name + ' wurde manuell hinzugefügt.',
+      eventDate: moment().toISOString(),
+      source: 'Inventory',
+      sourceDetail: inventoryItem
+    });
   }
 
   removeInventoryItem(inventoryItem: number) {
@@ -107,7 +114,4 @@ export class InventoryListComponent implements OnInit {
     this.showForm = false;
   }
 
-  clickTestButton() {
-    alert('It works');
-  }
 }
