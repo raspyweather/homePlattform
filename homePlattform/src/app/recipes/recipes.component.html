@@ -7,8 +7,18 @@
       <h5 class="card-title" style="text-align: center">{{recipe.name}}</h5>
       <h6 class="card-subtitle" style="padding-bottom: 5px; text-decoration: underline; font-weight: bold;">Zutaten</h6>
       <ul>
-        <li class="card-text" *ngFor="let ingredient of recipe.ingredients">{{ingredient.quantity}} {{ingredient.unit}}
+        <li class="btn btn-small m-1"
+          [ngClass]="{'btn-outline-success':ingredient.available,'btn-outline-danger':!ingredient.available }"
+          *ngFor="let ingredient of recipe.ingredients">{{ingredient.quantity}} {{ingredient.unit}}
           {{ingredient.name}}
+        </li>
+      </ul>
+      <h6 *ngIf="recipe.requiredDevices!==undefined" class="card-subtitle"
+        style="padding-bottom: 5px; text-decoration: underline; font-weight: bold;">Geräte</h6>
+      <ul *ngIf="recipe.requiredDevices!==undefined">
+        <li class="btn btn-small m-1"
+          [ngClass]="{'btn-outline-success':device.available,'btn-outline-danger':!device.available }"
+          *ngFor="let device of recipe.requiredDevices">{{device.name}}
         </li>
       </ul>
       <h6 class="card-subtitle" style="padding-bottom: 5px; text-decoration: underline; font-weight: bold;">Zubereitung
