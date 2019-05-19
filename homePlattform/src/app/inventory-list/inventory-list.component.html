@@ -36,24 +36,21 @@
     Zurück</button>
 </form>
 <p></p>
-<ul class="list-group">
-  <div class="card inventoryItem" *ngFor="let inventoryElement of items; let idx = index">
+<ul class="d-flex flex-column">
+  <div class="card inventoryItem flex-fill flex-shrink" *ngFor="let inventoryElement of items; let idx = index">
     <div class="card-body">
-      <div class="d-flex row">
-        <div class="col">
-          <h5 class="card-title">{{inventoryElement.name}}</h5>
-          <p class="card-text">Mindestens haltbar bis: {{inventoryElement.bestBefore}}</p>
-        </div>
-        <div class="col">
-          <p class="card-text">Preis: {{inventoryElement.price}}€</p>
-          <p class="card-text">Hinzugefügt am {{inventoryElement.addedAt}}</p>
-        </div>
-        <div class="col">
-          <button type="button" class="btn btn-danger" (click)="removeInventoryItem(idx)">
-            <i class="fa fa-trash"></i></button>
-        </div>
+      <div class="d-flex flex-row justify-content-betwee m-1">
+        <h5 class="align-self-center flex-fill">{{inventoryElement.name}}</h5>
+        <button type="button" class="btn btn-small btn-danger" (click)="removeInventoryItem(idx)">
+          <i class="fas fa-trash"></i></button>
+      </div>
+      <div class="d-flex flex-row flex-wrap m-0">
+        <span class="m-1 btn btn-outline-success"><b>MHD</b> {{inventoryElement.bestBefore}} </span>
+        <span class="m-1 btn btn-outline-success"><b>Preis</b> {{inventoryElement.price}}€</span>
+        <span class="m-1 btn btn-outline-success"><b>Hinzugefügt am</b> {{inventoryElement.addedAt}}</span>
       </div>
     </div>
+
   </div>
 </ul>
 

@@ -1,5 +1,5 @@
-export interface coupon {
-    title: String;
-    percentage: Number;
-    validUntil: String;
+export interface Coupon {
+    title: string;
+    percentage: number;
+    validUntil: string;
 }
