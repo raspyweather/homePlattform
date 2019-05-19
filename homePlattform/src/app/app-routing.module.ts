@@ -12,10 +12,7 @@ const routes: Routes = [{
   component: ScanReceiptComponent,
   path: 'scanner'
 },
-{
-  component: HomeComponent,
-  path: ''
-},
+
 {
   component: InventoryListComponent,
   path: 'inventory'
@@ -40,7 +37,10 @@ const routes: Routes = [{
 {
   component: RecipesComponent,
   path: 'recipes'
-}];
+},{
+  component: HomeComponent,
+  path: '**'
+},];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
