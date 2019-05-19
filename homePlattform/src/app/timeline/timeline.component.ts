@@ -22,7 +22,7 @@ export class TimelineComponent implements OnInit {
     if (diff.asDays() >= 7) {
       return date.locale('de').format('Do MMMM YYYY');
     }
-    return beforeX;//'vor ' + diff.locale('de').humanize(true);
+    return beforeX;
   }
   getIconClass(timelineEvent: TimelineEvent): IconStyleOption {
     if (timelineEvent.action === 'ScanReceipt' && timelineEvent.source === 'Inventory') {
