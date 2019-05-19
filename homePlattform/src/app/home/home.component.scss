@@ -1,11 +1,27 @@
 .coupon-title {
-    margin-left: 20px;
-    margin-top: 15px;
-    text-align: left;
+  margin-left: 20px;
+  margin-top: 15px;
+  text-align: left;
 }
 
 .coupon-text {
-    margin-left: 20px;
-    margin-top: 15px;
-    text-align: left;
+  margin-left: 20px;
+  margin-top: 15px;
+  text-align: left;
+}
+
+.carrousel-image {
+  background-size: contain !important;
+
+  background-repeat: no-repeat !important;
+
+  background-position: center top !important;
+  height: 15vh !important;
+}
+
+@media (min-width: 576px) {
+  .carrousel-image {
+    background-size: cover !important;
+    height: 30vh !important;
+  }
 }

@@ -1,7 +1,7 @@
 <ngb-carousel *ngIf="images">
     <ng-template ngbSlide>
         <a href="https://www.lidl.de/de/50-sixt-gutschein-fuer-30/p301512-c21286">
-            <img [src]="images[0]" alt="Random first slide">
+            <div class="carrousel-image" [style.background]="'url('+images[0]+')'"></div>
         </a>
         <div class="carousel-caption">
             <h3></h3>
@@ -10,7 +10,7 @@
     </ng-template>
     <ng-template ngbSlide>
         <a href="https://www.lidl.de/de/dessous-fuer-sinnliche-momente/c23412">
-            <img [src]="images[1]" alt="Random second slide">
+            <div class="carrousel-image" [style.background]="'url('+images[1]+')'"></div>
         </a>
         <div class="carousel-caption">
             <h3></h3>
@@ -19,7 +19,7 @@
     </ng-template>
     <ng-template ngbSlide>
         <a href="https://www.lidl.de/de/laessig-fuer-den-sommer-ab-20-05/c24229">
-            <img [src]="images[2]" style="width: 1182px; height: 300px; object-fit: cover" alt="Random third slide">
+            <div class="carrousel-image" [style.background]="'url('+images[2]+')'"></div>
         </a>
         <div class="carousel-caption">
             <h3></h3>
@@ -29,52 +29,15 @@
 </ngb-carousel>
 <p style="padding-top: 5px; padding-bottom: 5px"></p>
 <h2>Meine Coupons</h2>
-<!-- <ngb-carousel *ngIf="coupons">
-    <ng-template ngbSlide>
-        <div class="coupon" style="border-color: black; border-width: 1px; border-style: solid; width: 40rem">
-            <div class="row">
-                <div class="col align-self-center" style="border-right-style: dotted; border-color: black;">
-                    <h4 class="coupon-title">{{coupon[0].title}}</h4>
-                    <p class="coupon-text">Gültig bis {{coupon[0].validUntil}}</p>
-                </div>
-                <div class="col-2 align-self-center">
-                    <h3 style="text-align: center">{{coupon[0].percentage}} %</h3>
-                </div>
-            </div>
-        </div>
-    </ng-template>
-    <ng-template ngbSlide>
-        <div class="row">
-            <div class="col align-self-center" style="border-right-style: dotted; border-color: black;">
-                <h4 class="coupon-title">{{coupon[1].title}}</h4>
-                <p class="coupon-text">Gültig bis {{coupon[1].validUntil}}</p>
-            </div>
-            <div class="col-2 align-self-center">
-                <h3 style="text-align: center">{{coupon[1].percentage}} %</h3>
-            </div>
-        </div>
-    </ng-template>
-    <ng-template ngbSlide>
-        <div class="row">
-            <div class="col align-self-center" style="border-right-style: dotted; border-color: black;">
-                <h4 class="coupon-title">{{coupon[2].title}}</h4>
-                <p class="coupon-text">Gültig bis {{coupon[2].validUntil}}</p>
-            </div>
-            <div class="col-2 align-self-center">
-                <h3 style="text-align: center">{{coupon[2].percentage}} %</h3>
-            </div>
-        </div>
-    </ng-template>
-</ngb-carousel> -->
 
 <div class="container list-group" style="border-color: black; padding-bottom: 10px;" *ngFor="let coupon of coupons">
-    <div class="coupon" style="border-color: black; border-width: 1px; border-style: solid; width: 40rem">
+    <div class="coupon" style="border-color: black; border-width: 1px; border-style: solid; width: 90vw">
         <div class="row">
             <div class="col align-self-center" style="border-right-style: dotted; border-color: black;">
                 <h4 class="coupon-title">{{coupon.title}}</h4>
                 <p class="coupon-text">Gültig bis {{coupon.validUntil}}</p>
             </div>
-            <div class="col-2 align-self-center">
+            <div class="col-auto align-self-center" style="min-width:7rem;">
                 <h3 style="text-align: center">{{coupon.percentage}} %</h3>
             </div>
         </div>
