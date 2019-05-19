@@ -47,7 +47,7 @@ export class DevicesComponent implements OnInit {
     this.registeredDevices = this.deviceService.getDevices().filter((x, i) => i !== deviceIndex);
     this.eventService.addEvent({
       action: 'Remove',
-      title: 'Gerät' + removedDevice.name + ' wurde entfernt',
+      title: 'Gerät ' + removedDevice.name + ' wurde entfernt',
       eventDate: moment().toISOString(),
       source: 'Device',
       sourceDetail: removedDevice
