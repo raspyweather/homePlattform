@@ -14,6 +14,7 @@ import { InventoryService } from './inventory.service';
 import { TimelineComponent } from './timeline/timeline.component';
 import { DeviceService } from './device.service';
 import { EventService } from './event.service';
+import { RecipesComponent } from './recipes/recipes.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { EventService } from './event.service';
     HomeComponent,
     UpdateListComponent,
     DevicesComponent,
-    TimelineComponent
+    TimelineComponent,
+    RecipesComponent
   ],
   imports: [
     BrowserModule,
