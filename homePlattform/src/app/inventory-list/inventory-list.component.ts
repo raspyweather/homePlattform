@@ -32,7 +32,7 @@ export class InventoryListComponent implements OnInit {
       [
         {
           name: 'Apple',
-          imageUrl: '../../../../assets/apple.jpg',
+          imageUrl: '../../../../assets/apple.png',
           price: 0.29, bestBefore: '19-07-20', addedAt: '1. Mai 2019 um 08:00 Uhr'
         },
         {
@@ -41,7 +41,7 @@ export class InventoryListComponent implements OnInit {
           bestBefore: '30-09-20',
           addedAt: '6. Mai 2019 um 08:00 Uhr',
           userCheckRecommended: true,
-          imageUrl: '../../../../assets/orange.jpg'
+          imageUrl: '../../../../assets/orange.png'
         },
         {
           name: 'k-Classic Apfelsaft klar 1,5L', price: 0.79,
