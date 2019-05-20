@@ -30,17 +30,31 @@ export class InventoryListComponent implements OnInit {
     this.items = this.inventoryService.getInventoryElements();
     if (this.items.length === 0) {
       [
-        { name: 'Apple Loopies', price: 1.99, bestBefore: '19-07-20', addedAt: '1. Mai 2019 um 08:00 Uhr' },
         {
-          name: 'Bio-Bananen, 5 Stück', price: 1.99, bestBefore: '30-09-20', addedAt: '6. Mai 2019 um 08:00 Uhr', userCheckRecommended: true,
-          imageUrl: 'https://www.kochschule.de/sites/default/files/images/kochwissen/440/banane.jpg'
+          name: 'Apple',
+          imageUrl: '../../../../assets/apple.png',
+          price: 0.29, bestBefore: '19-07-20', addedAt: '1. Mai 2019 um 08:00 Uhr'
         },
         {
-          name: 'RAUCH Happy Day 100% Apfel Apfelsaft 2L', price: 1.99,
+          name: 'Orange, sonnengereift',
+          price: 0.39,
+          bestBefore: '30-09-20',
+          addedAt: '6. Mai 2019 um 08:00 Uhr',
+          userCheckRecommended: true,
+          imageUrl: '../../../../assets/orange.png'
+        },
+        {
+          name: 'k-Classic Apfelsaft klar 1,5L', price: 0.79,
           bestBefore: '14-07-20', addedAt: '12. Mai 2019 um 08:00 Uhr',
-          userCheckRecommended: true, imageUrl: 'https://files.billa.at/files/artikel/00-400975_01__600x600.jpg'
+          userCheckRecommended: true,
+          imageUrl: 'https://media.kaufland.com/images/PPIM/AP_Product_Clip_666/deu/71/43/Asset_3397143.jpg'
         },
-        { name: 'Württemberg Trollinger mit Lemberger QbA halbtrocken, Rotwein 2017', price: 1.99, bestBefore: '30-07-20', addedAt: '12. Mai 2019 um 08:00 Uhr', userCheckRecommended: true, imageUrl: 'https://www.lidl.de/media/product/0/2/4/8/3/1/5/wuerttemberg-trollinger-mit-lemberger-qba-halbtrocken-rotwein-2017--1.jpg' }
+        {
+          name: 'Württemberg Trollinger mit Lemberger QbA halbtrocken, Rotwein 2017',
+          price: 1.99, bestBefore: '30-07-20', addedAt: '12. Mai 2019 um 08:00 Uhr',
+          userCheckRecommended: true,
+          imageUrl: 'https://www.lidl.de/media/product/0/2/4/8/3/1/5/wuerttemberg-trollinger-mit-lemberger-qba-halbtrocken-rotwein-2017--1.jpg'
+        }
       ].forEach(item => this.insertInventoryItem(item));
       console.log(this.items);
     }
